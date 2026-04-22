@@ -132,11 +132,14 @@ a{color:inherit;text-decoration:none}
   filter:drop-shadow(0 0 40px rgba(227,48,26,0.22));
   transition:transform 0.3s ease-out;
 }
-/* SVG uses fill="currentColor" — filter paints the shape bone-white. */
+/* SVG uses fill="currentColor" — filter paints the shape bone-white.
+   Spin lives on the img so the parent's inline translate (parallax) and
+   scale (breathe) don't clobber the rotation — only one transform wins
+   per element. */
 .hero__logo img{
   width:100%;height:100%;display:block;
   filter:brightness(0) invert(1);
-  animation:spin 24s linear infinite, breathe 6s ease-in-out infinite;
+  animation:spin 24s linear infinite;
 }
 .hero__logo-ring{
   position:absolute;inset:-8%;border:1px solid var(--line-strong);
