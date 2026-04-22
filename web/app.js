@@ -105,6 +105,12 @@ if (heroLogo){
 (function(){
   const title = document.querySelector('.hero__title');
   if(!title) return;
+  // Shared parent of logo + title — used to broadcast infection state
+  // classes so the logo can react in CSS while the name is being infected.
+  const inner = title.closest('.hero__inner') || title.parentElement;
+  // The orbit ring whose two red "electron" dots ride as pseudo-elements.
+  // Direction is flipped randomly per letter infection.
+  const ring = inner ? inner.querySelector('.hero__logo-ring') : null;
   const words = title.querySelectorAll('.word');
   const letters = [];
   // "Patient zero" pool: letters in every word except the last ("SPINE").
@@ -175,16 +181,33 @@ if (heroLogo){
       }
       const spread = 5500;
       const step = spread / order.length;
+      // Signal the spread phase to CSS so the logo above can react.
+      inner.classList.add('infecting');
+      // Each letter infection guarantees a direction flip on the ring,
+      // so the two red "electron" dots visibly reverse on every single
+      // letter. We toggle from the current state (tracked locally) —
+      // a pure random pick would keep the same direction ~half the time.
+      let ringDir = 'reverse';
       for(let i=0; i<order.length; i++){
-        setTimeout(() => order[i].classList.add('infected'),
-                   i*step + Math.random()*step*0.5);
+        setTimeout(() => {
+          order[i].classList.add('infected');
+          if(ring){
+            ringDir = (ringDir === 'normal') ? 'reverse' : 'normal';
+            ring.style.animationDirection = ringDir;
+          }
+        }, i*step + Math.random()*step*0.5);
       }
       await wait(spread + 1100);
       title.classList.add('overload');
+      inner.classList.add('overloading');
       await wait(180);
       letters.forEach(l => l.classList.remove('infected'));
       await wait(140);
       title.classList.remove('overload');
+      inner.classList.remove('overloading');
+      inner.classList.remove('infecting');
+      // Hand the ring back to its CSS-default reverse spin.
+      if(ring) ring.style.animationDirection = '';
     }
   }
   cycle();

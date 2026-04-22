@@ -154,6 +154,39 @@ a{color:inherit;text-decoration:none}
 .hero__logo-ring::after{bottom:-3px;left:50%;width:6px;height:6px;border-radius:50%;transform:translateX(-50%)}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
+/* Logo reacts to the name getting infected below it. app.js toggles
+   .infecting on .hero__inner during the spread phase and .overloading
+   during the brief flash at the end. */
+.hero__inner.infecting .hero__logo{
+  animation:logoInfect 2.2s ease-in-out infinite;
+}
+.hero__inner.infecting .hero__logo-ring{
+  border-color:rgba(227,48,26,0.55);
+  animation-duration:24s;
+}
+.hero__inner.infecting .hero__logo-ring::before,
+.hero__inner.infecting .hero__logo-ring::after{
+  box-shadow:0 0 10px rgba(227,48,26,0.9), 0 0 4px var(--acid);
+  animation:dotPulse 0.9s ease-in-out infinite;
+}
+.hero__inner.overloading .hero__logo{
+  animation:logoOverload 0.30s steps(3) 1;
+}
+@keyframes logoInfect{
+  0%,100%{filter:drop-shadow(0 0 40px rgba(227,48,26,0.28))}
+  50%{filter:drop-shadow(0 0 80px rgba(227,48,26,0.7))}
+}
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:translateX(-50%) scale(1)}
+  50%{opacity:0.55;transform:translateX(-50%) scale(1.35)}
+}
+@keyframes logoOverload{
+  0%{filter:drop-shadow(0 0 40px rgba(227,48,26,0.22))}
+  33%{filter:invert(1) brightness(1.6)}
+  66%{filter:brightness(2.4) saturate(1.6) drop-shadow(0 0 60px rgba(227,48,26,0.85))}
+  100%{filter:drop-shadow(0 0 40px rgba(227,48,26,0.22))}
+}
+
 .hero__title{
   font-family:var(--display);
   font-size:clamp(48px, 13vw, 200px);
