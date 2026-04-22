@@ -1,5 +1,8 @@
 <div align="center">
-  <img src="web/assets/spine-logo.svg" alt="A Wired Spine" width="140" style="filter: invert(1);" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-light-on-dark.svg">
+    <img src="docs/logo-dark-on-light.svg" alt="A Wired Spine" width="140">
+  </picture>
 
   <h1>A Wired Spine</h1>
 
