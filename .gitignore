@@ -1,0 +1,17 @@
+# Dart/pub
+.dart_tool/
+.packages
+pubspec.lock
+
+# Jaspr build output
+/build/
+
+# Misc
+*.log
+.DS_Store
+
+# IDE
+*.iml
+*.ipr
+*.iws
+.idea/
