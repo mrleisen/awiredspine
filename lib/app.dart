@@ -352,7 +352,7 @@ class App extends StatelessComponent {
           text('© 2004 — ∞ · all tracks self-recorded · thank you for listening'),
         ]),
         div(classes: 'foot__byline', [
-          text('— music & art direction · '),
+          text('— made by one human · '),
           a(
             classes: 'foot__byline-link',
             href: 'https://rafahcf.com',
