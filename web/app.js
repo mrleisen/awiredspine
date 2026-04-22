@@ -88,6 +88,80 @@ if (heroLogo){
   });
 }
 
+// Hero title "virus" infection: random letters flicker to acid-red one by
+// one until the whole name is infected, then glitch-snap back to bone,
+// rest, and spread again. Word-level ::before/::after chromatic ghosts
+// keep working because data-text lives on the .word element.
+(function(){
+  const title = document.querySelector('.hero__title');
+  if(!title) return;
+  const words = title.querySelectorAll('.word');
+  const letters = [];
+  words.forEach(w => {
+    const text = w.textContent;
+    [...w.childNodes].forEach(n => { if(n.nodeType === 3) w.removeChild(n); });
+    for(const ch of text){
+      const span = document.createElement('span');
+      span.className = 'letter';
+      span.textContent = ch;
+      w.appendChild(span);
+      letters.push(span);
+    }
+  });
+  if(!letters.length) return;
+
+  // Pin each letter to its natural Archivo Black width so swapping to a
+  // different font on .infected can't reflow or collapse the line.
+  async function lockLetterWidths(){
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    const hadInfected = letters.filter(l => l.classList.contains('infected'));
+    hadInfected.forEach(l => l.classList.remove('infected'));
+    letters.forEach(l => { l.style.width = ''; });
+    letters[0].getBoundingClientRect(); // force reflow
+    letters.forEach(l => {
+      const r = l.getBoundingClientRect();
+      l.style.width = r.width + 'px';
+    });
+    hadInfected.forEach(l => l.classList.add('infected'));
+  }
+  lockLetterWidths();
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(lockLetterWidths, 150);
+  });
+
+  const shuffle = (arr) => {
+    const a = arr.slice();
+    for(let i=a.length-1; i>0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  };
+  const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+  async function cycle(){
+    while(true){
+      await wait(3500 + Math.random()*3000);
+      const order = shuffle(letters);
+      const spread = 5500;
+      const step = spread / order.length;
+      for(let i=0; i<order.length; i++){
+        setTimeout(() => order[i].classList.add('infected'),
+                   i*step + Math.random()*step*0.5);
+      }
+      await wait(spread + 1100);
+      title.classList.add('overload');
+      await wait(180);
+      letters.forEach(l => l.classList.remove('infected'));
+      await wait(140);
+      title.classList.remove('overload');
+    }
+  }
+  cycle();
+})();
+
 // Crosshair follows cursor
 const ch = document.querySelector('.crosshair');
 if (ch){

@@ -168,6 +168,25 @@ a{color:inherit;text-decoration:none}
 .hero__title .word::before,.hero__title .word::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none}
 .hero__title .word::before{color:var(--acid);transform:translate(2px,0);mix-blend-mode:screen;opacity:0.7;animation:glitch1 4s steps(1) infinite}
 .hero__title .word::after{color:#00e6ff;transform:translate(-2px,0);mix-blend-mode:screen;opacity:0.25;animation:glitch2 5.3s steps(1) infinite}
+/* Viral infection: individual letters (wrapped by app.js) flip to acid one
+   at a time with a short flicker-in, then the whole title glitch-snaps back. */
+.hero__title .letter{display:inline-block;position:relative;color:inherit;text-align:center}
+.hero__title .letter.infected{color:var(--acid);font-family:'Share Tech Mono',var(--mono);animation:letterInfect 0.55s steps(4) 1;text-shadow:0 0 12px rgba(227,48,26,0.45)}
+@keyframes letterInfect{
+  0%{color:var(--ink);text-shadow:none}
+  20%{color:var(--acid);text-shadow:0 0 8px rgba(227,48,26,0.6)}
+  40%{color:var(--ink);text-shadow:none}
+  60%{color:var(--acid);text-shadow:0 0 14px rgba(227,48,26,0.7)}
+  80%{color:var(--ink);text-shadow:none}
+  100%{color:var(--acid);text-shadow:0 0 12px rgba(227,48,26,0.45)}
+}
+.hero__title.overload{animation:overload 0.30s steps(3) 1}
+@keyframes overload{
+  0%{filter:none}
+  33%{filter:invert(1) brightness(1.6) contrast(1.3)}
+  66%{filter:brightness(2.4) saturate(1.6)}
+  100%{filter:none}
+}
 @keyframes flicker{0%,97%,100%{opacity:1}98%{opacity:0.4}99%{opacity:0.9}}
 @keyframes glitch1{
   0%,92%,100%{transform:translate(2px,0);clip-path:inset(0 0 0 0)}

@@ -31,7 +31,7 @@ void main() {
       link(
         rel: 'stylesheet',
         href:
-            'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Major+Mono+Display&display=swap',
+            'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Major+Mono+Display&family=VT323&family=Share+Tech+Mono&display=swap',
       ),
       link(rel: 'stylesheet', href: 'style.css?v=10'),
       // Scripts deferred so they execute after the DOM is parsed. hero.js
