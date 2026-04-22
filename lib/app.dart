@@ -344,9 +344,9 @@ class App extends StatelessComponent {
       ]),
       div(classes: 'foot__text', [
         div(classes: 'foot__big', [
-          text(
-            'A\u00a0·\u00a0WIRED\u00a0·\u00a0SPINE',
-          ),
+          text('A\u00a0·\u00a0'),
+          span(classes: 'foot__big-wired', [text('WIRED')]),
+          text('\u00a0·\u00a0SPINE'),
         ]),
         div(classes: 'foot__small', [
           text('© 2004 — ∞ · all tracks self-recorded · thank you for listening'),
