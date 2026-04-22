@@ -143,7 +143,7 @@ if (heroLogo){
 
   async function cycle(){
     while(true){
-      await wait(3500 + Math.random()*3000);
+      await wait(9000 + Math.random()*6000);
       const order = shuffle(letters);
       const spread = 5500;
       const step = spread / order.length;
