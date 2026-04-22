@@ -107,7 +107,11 @@ if (heroLogo){
   if(!title) return;
   const words = title.querySelectorAll('.word');
   const letters = [];
-  words.forEach(w => {
+  // "Patient zero" pool: letters in every word except the last ("SPINE").
+  // Infection always starts somewhere in "A WIRED", never in "SPINE".
+  const seedLetters = [];
+  const lastWordIndex = words.length - 1;
+  words.forEach((w, wi) => {
     const text = w.textContent;
     [...w.childNodes].forEach(n => { if(n.nodeType === 3) w.removeChild(n); });
     for(const ch of text){
@@ -116,29 +120,34 @@ if (heroLogo){
       span.textContent = ch;
       w.appendChild(span);
       letters.push(span);
+      if(wi < lastWordIndex) seedLetters.push(span);
     }
   });
   if(!letters.length) return;
 
-  // Pin each letter to its natural Archivo Black width so swapping to a
-  // different font on .infected can't reflow or collapse the line.
-  async function lockLetterWidths(){
+  // Pin each letter to its natural Archivo Black width AND pin the title's
+  // natural height, so swapping to a different font on .infected can't
+  // reflow the line horizontally or shift the whole page vertically —
+  // which was causing mis-clicks on the SoundCloud player below.
+  async function lockLayout(){
     if(document.fonts && document.fonts.ready) await document.fonts.ready;
     const hadInfected = letters.filter(l => l.classList.contains('infected'));
     hadInfected.forEach(l => l.classList.remove('infected'));
     letters.forEach(l => { l.style.width = ''; });
+    title.style.height = '';
     letters[0].getBoundingClientRect(); // force reflow
     letters.forEach(l => {
       const r = l.getBoundingClientRect();
       l.style.width = r.width + 'px';
     });
+    title.style.height = title.getBoundingClientRect().height + 'px';
     hadInfected.forEach(l => l.classList.add('infected'));
   }
-  lockLetterWidths();
+  lockLayout();
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(lockLetterWidths, 150);
+    resizeTimer = setTimeout(lockLayout, 150);
   });
 
   const shuffle = (arr) => {
@@ -155,6 +164,15 @@ if (heroLogo){
     while(true){
       await wait(9000 + Math.random()*6000);
       const order = shuffle(letters);
+      // Force "patient zero" (index 0) to be a letter from "A WIRED".
+      // Step-based scheduling below keeps index 0 as the first to fire,
+      // so swapping a seed letter into order[0] guarantees the infection
+      // always starts in the first two words — never in "SPINE".
+      if(seedLetters.length){
+        const seed = seedLetters[Math.floor(Math.random()*seedLetters.length)];
+        const idx = order.indexOf(seed);
+        if(idx > 0){ [order[0], order[idx]] = [order[idx], order[0]]; }
+      }
       const spread = 5500;
       const step = spread / order.length;
       for(let i=0; i<order.length; i++){
