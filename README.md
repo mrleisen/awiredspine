@@ -1,10 +1,7 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-light-on-dark.svg">
-    <img src="docs/logo-dark-on-light.svg" alt="A Wired Spine" width="140">
-  </picture>
+  <img src="web/og-image.png" alt="A Wired Spine — black hypnotic spiral on acid-red, with stacked wordmark" width="100%">
 
-  <h1>A Wired Spine</h1>
+  <br><br>
 
   <p>
     <em>Single-page site for an experimental electronic music project.</em><br>

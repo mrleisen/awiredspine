@@ -351,6 +351,16 @@ class App extends StatelessComponent {
         div(classes: 'foot__small', [
           text('© 2004 — ∞ · all tracks self-recorded · thank you for listening'),
         ]),
+        div(classes: 'foot__byline', [
+          text('— music & art direction by '),
+          a(
+            classes: 'foot__byline-link',
+            href: 'https://rafahcf.com',
+            target: Target.blank,
+            attributes: {'rel': 'noopener'},
+            [text('Rafael Camargo · rafahcf.com ↗')],
+          ),
+        ]),
         div(classes: 'foot__marquee', [
           div(classes: 'foot__marquee-track', [
             text(

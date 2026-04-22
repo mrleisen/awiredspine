@@ -509,6 +509,9 @@ a{color:inherit;text-decoration:none}
 .foot__big{font-family:var(--display);font-size:clamp(28px,5vw,56px);letter-spacing:-0.02em;line-height:1}
 .foot__big-wired{color:var(--acid)}
 .foot__small{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim)}
+.foot__byline{font-family:var(--prose,'EB Garamond',serif);font-style:italic;font-size:14px;letter-spacing:0.02em;color:var(--ink-dim);margin-top:-2px}
+.foot__byline-link{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .2s ease,border-color .2s ease}
+.foot__byline-link:hover{color:var(--acid);border-bottom-color:var(--acid)}
 .foot__marquee{margin-top:12px;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;mask-image:linear-gradient(to right, transparent, #000 10%, #000 90%, transparent)}
 .foot__marquee-track{white-space:nowrap;font-size:13px;letter-spacing:0.3em;color:var(--acid);animation:marquee 30s linear infinite}
 
