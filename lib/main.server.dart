@@ -19,7 +19,7 @@ void main() {
       'Three self-released instrumental records (2004 – 2012) by A WIRED SPINE — '
       'analog bone, digital current. Bedroom-made ambient, noise, and hypnotic '
       'electronic rock. No vocals. Free to stream on SoundCloud.';
-  const ogImage = 'https://awiredspine.com/logo.png';
+  const ogImage = 'https://awiredspine.com/og-image.png?v=1';
 
   runApp(Document(
     title: siteTitle,
@@ -68,17 +68,22 @@ void main() {
       ),
       Component.element(
         tag: 'meta',
-        attributes: {'property': 'og:image:width', 'content': '1080'},
+        attributes: {'property': 'og:image:width', 'content': '1200'},
       ),
       Component.element(
         tag: 'meta',
-        attributes: {'property': 'og:image:height', 'content': '1080'},
+        attributes: {'property': 'og:image:height', 'content': '630'},
+      ),
+      Component.element(
+        tag: 'meta',
+        attributes: {'property': 'og:image:type', 'content': 'image/png'},
       ),
       Component.element(
         tag: 'meta',
         attributes: {
           'property': 'og:image:alt',
-          'content': 'A Wired Spine — spiral spine logo on black',
+          'content':
+              'A WIRED SPINE — black hypnotic spiral on acid-red, with stacked wordmark',
         },
       ),
       Component.element(
@@ -93,7 +98,8 @@ void main() {
       meta(name: 'twitter:image', content: ogImage),
       meta(
         name: 'twitter:image:alt',
-        content: 'A Wired Spine — spiral spine logo on black',
+        content:
+            'A WIRED SPINE — black hypnotic spiral on acid-red, with stacked wordmark',
       ),
 
       link(rel: 'icon', type: 'image/svg+xml', href: 'assets/spine-logo.svg?v=6'),
