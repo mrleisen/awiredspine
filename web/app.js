@@ -48,6 +48,16 @@ if (list){
     list.appendChild(li);
   });
 
+  // Expand the latest release on load so the player is ready.
+  const latest = list.querySelector('.rel') &&
+    (list.querySelector('.rel[data-id="' +
+       (RELEASES.find(r => r.tag === 'LATEST') || RELEASES[0]).id + '"]'));
+  if(latest){
+    latest.classList.add('is-open');
+    const iframe = latest.querySelector('iframe');
+    if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
+  }
+
   list.addEventListener('click', (e) => {
     const li = e.target.closest('.rel');
     if(!li) return;
