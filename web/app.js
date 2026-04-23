@@ -288,6 +288,25 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   const rand = (n) => Math.floor(Math.random() * n);
 
+  // Terminal-style auto-scroll: when the text + caret exceeds the inner
+  // container width, shift the text left so the caret is always visible.
+  // Called after every content update (including erases).
+  const inner = host.querySelector('.nocturne__inner');
+  const CARET_RESERVE_PX = 16;
+  function adjustScroll(){
+    if (!inner) return;
+    const strW   = out.getBoundingClientRect().width;
+    const innerW = inner.clientWidth;
+    const overflow = strW + CARET_RESERVE_PX - innerW;
+    out.style.transform = overflow > 0 ? `translateX(-${overflow}px)` : 'translateX(0)';
+  }
+
+  // Set plain text content and keep the caret in view.
+  function setText(value){
+    out.textContent = value;
+    adjustScroll();
+  }
+
   // Render `prefix` as a text node followed by `scrambleChar` as a red span.
   // Rebuilds the element to avoid fragile innerHTML escaping.
   function paintScramble(prefix, ch){
@@ -297,7 +316,12 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
     span.className = 'nocturne__scramble';
     span.textContent = ch;
     out.appendChild(span);
+    adjustScroll();
   }
+
+  // Re-measure on resize so a rotated phone or resized window doesn't leave
+  // stale translation offsets in place.
+  window.addEventListener('resize', adjustScroll);
 
   let i = 0;
 
@@ -311,7 +335,7 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
         const real = s.charAt(c - 1);
 
         if (real === ' '){
-          out.textContent = prefix + ' ';
+          setText(prefix + ' ');
           await sleep(40);
           continue;
         }
@@ -321,17 +345,18 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
           paintScramble(prefix, GLYPHS.charAt(rand(GLYPHS.length)));
           await sleep(38);
         }
-        out.textContent = prefix + real;
+        setText(prefix + real);
 
         // ~5% chance of a mid-sentence corruption flash on an already-typed
         // position, snapping back after ~100 ms.
         if (c > 3 && Math.random() < 0.05){
           const current = prefix + real;
           const idx = rand(c);
-          out.textContent =
-            current.slice(0, idx) + BLOCKS.charAt(rand(BLOCKS.length)) + current.slice(idx + 1);
+          setText(
+            current.slice(0, idx) + BLOCKS.charAt(rand(BLOCKS.length)) + current.slice(idx + 1),
+          );
           await sleep(100);
-          out.textContent = current;
+          setText(current);
         }
 
         await sleep(20);
@@ -347,7 +372,7 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
       // Erase — pan the grain right-to-left while we erase chars from the end.
       host.classList.add('nocturne--erasing');
       for (let c = s.length - 1; c >= 0; c--){
-        out.textContent = s.slice(0, c);
+        setText(s.slice(0, c));
         await sleep(ERASE_MS);
       }
       host.classList.remove('nocturne--erasing');
