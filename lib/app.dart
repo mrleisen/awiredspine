@@ -77,7 +77,7 @@ class App extends StatelessComponent {
         ]),
         div(classes: 'hero__meta', [
           span(classes: 'hero__dot', []),
-          span([text('THREE RECORDS · 2004 → 2012')]),
+          span([text('ONGOING TRANSMISSION · SINCE 2004')]),
           span(classes: 'hero__dot', []),
         ]),
       ]),
