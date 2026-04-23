@@ -306,7 +306,7 @@ class App extends StatelessComponent {
             'The spine walks at night through empty streets.|'
             'The city connects its cables to the spine.|'
             'The spine trembles.|'
-            'The spine vibrates.|'
+            'The spine resonates.|'
             'Through the spine the current flows.|'
             'Through the spine the sound travels.|'
             'The wire is connected.|'
