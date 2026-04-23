@@ -383,9 +383,11 @@ class App extends StatelessComponent {
 
     // ===== FOOTER =====
     footer(classes: 'foot', [
-      div(classes: 'foot__spiral', [
-        img(src: 'assets/spine-logo.svg?v=5', alt: ''),
-      ]),
+      // Frame aligns footer content with the 1240px page column, while the
+      // border-top on .foot itself stays full-bleed. Text column is placed
+      // first so it sits flush with the content edge used by the sections
+      // above (01/02/03 headers, plate, cards); spiral lives on the right.
+      div(classes: 'foot__frame', [
       div(classes: 'foot__text', [
         div(classes: 'foot__big', [
           text('A\u00a0·\u00a0'),
@@ -393,7 +395,7 @@ class App extends StatelessComponent {
           text('\u00a0·\u00a0SPINE'),
         ]),
         div(classes: 'foot__small', [
-          text('© 2004 — 2026 · all tracks self-recorded · thank you for listening'),
+          text('© 2004 — 2026 · thank you for listening'),
         ]),
         div(classes: 'foot__byline', [
           text('— made by one human · '),
@@ -405,12 +407,17 @@ class App extends StatelessComponent {
             [text('rafahcf.com ↗')],
           ),
         ]),
-        div(classes: 'foot__marquee', [
-          div(classes: 'foot__marquee-track', [
-            text(
-              'PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR ·',
-            ),
-          ]),
+      ]),
+      div(classes: 'foot__spiral', [
+        img(src: 'assets/spine-logo.svg?v=5', alt: ''),
+      ]),
+      ]),
+      // Marquee sits outside the frame so it spans the full viewport width.
+      div(classes: 'foot__marquee', [
+        div(classes: 'foot__marquee-track', [
+          text(
+            'PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR ·',
+          ),
         ]),
       ]),
     ]),
