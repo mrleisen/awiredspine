@@ -253,3 +253,107 @@ document.querySelectorAll('.field__wave').forEach((el, idx) => {
   el.style.webkitClipPath = polygon;
   el.style.clipPath = polygon;
 });
+
+// ==== nocturne typewriter (interstitial between Etymology and Signal) ====
+// For each sentence:
+//   1. Type character by character, each char scrambling through random
+//      glyphs (acid red) before locking to the real char (white).
+//   2. During typing, a small chance of mid-sentence corruption (a █▓▒░
+//      block flashes in a random already-typed position, then snaps back).
+//   3. Hold the full sentence, with one RGB-split interference flash.
+//   4. Erase, then burst TV static across the band, then move on.
+// Loops forever. Respects prefers-reduced-motion.
+(function initNocturne(){
+  const host = document.querySelector('.nocturne[data-lines]');
+  if (!host) return;
+  const out = host.querySelector('.nocturne__str');
+  if (!out) return;
+
+  const raw = (host.getAttribute('data-lines') || '').split('|')
+    .map(s => s.trim()).filter(Boolean);
+  if (!raw.length) return;
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){
+    out.textContent = raw.join('  ·  ');
+    const caret = host.querySelector('.nocturne__caret');
+    if (caret) caret.style.display = 'none';
+    return;
+  }
+
+  const HOLD_MS  = 2000;
+  const ERASE_MS = 25;
+  const GAP_MS   = 400;
+  const GLYPHS   = '█▓▒░!@#$%&*/\\|<>ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const BLOCKS   = '█▓▒░';
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  const rand = (n) => Math.floor(Math.random() * n);
+
+  // Render `prefix` as a text node followed by `scrambleChar` as a red span.
+  // Rebuilds the element to avoid fragile innerHTML escaping.
+  function paintScramble(prefix, ch){
+    out.textContent = '';
+    out.appendChild(document.createTextNode(prefix));
+    const span = document.createElement('span');
+    span.className = 'nocturne__scramble';
+    span.textContent = ch;
+    out.appendChild(span);
+  }
+
+  let i = 0;
+
+  (async function loop(){
+    // eslint-disable-next-line no-constant-condition
+    while (true){
+      const s = raw[i];
+
+      for (let c = 1; c <= s.length; c++){
+        const prefix = s.slice(0, c - 1);
+        const real = s.charAt(c - 1);
+
+        if (real === ' '){
+          out.textContent = prefix + ' ';
+          await sleep(40);
+          continue;
+        }
+
+        // Scramble frames (random red glyph) → lock to real char (white).
+        for (let k = 0; k < 4; k++){
+          paintScramble(prefix, GLYPHS.charAt(rand(GLYPHS.length)));
+          await sleep(38);
+        }
+        out.textContent = prefix + real;
+
+        // ~5% chance of a mid-sentence corruption flash on an already-typed
+        // position, snapping back after ~100 ms.
+        if (c > 3 && Math.random() < 0.05){
+          const current = prefix + real;
+          const idx = rand(c);
+          out.textContent =
+            current.slice(0, idx) + BLOCKS.charAt(rand(BLOCKS.length)) + current.slice(idx + 1);
+          await sleep(100);
+          out.textContent = current;
+        }
+
+        await sleep(20);
+      }
+
+      // Hold, with a brief RGB-split interference flash partway through.
+      await sleep(700);
+      host.classList.add('nocturne--glitching');
+      await sleep(110);
+      host.classList.remove('nocturne--glitching');
+      await sleep(HOLD_MS - 700 - 110);
+
+      // Erase — pan the grain right-to-left while we erase chars from the end.
+      host.classList.add('nocturne--erasing');
+      for (let c = s.length - 1; c >= 0; c--){
+        out.textContent = s.slice(0, c);
+        await sleep(ERASE_MS);
+      }
+      host.classList.remove('nocturne--erasing');
+
+      await sleep(GAP_MS);
+      i = (i + 1) % raw.length;
+    }
+  })();
+})();

@@ -282,6 +282,129 @@ a{color:inherit;text-decoration:none}
 .int-row--2 .int-track span{font-family:var(--serif);font-style:italic;font-size:28px;letter-spacing:0.1em}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
+/* ======== nocturne interstitial (typewriter band) ======== */
+/* .nocturne is full-bleed (background + static overlay span the viewport).
+   .nocturne__frame is constrained to 1240px so the corner marks, chrome,
+   and dashed rules align with the page content column used by .releases /
+   .etym / .signal. */
+.nocturne{
+  position:relative;z-index:5;
+  margin-top:96px;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgba(255,255,255,0.03) 2px 3px),
+    #000;
+  overflow:hidden;
+}
+/* Film grain. Static by default; pans right-to-left only while the band
+   has .nocturne--erasing, so the motion tracks the erase sweep. */
+.nocturne::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size:220px 220px;
+  opacity:0.5;
+  mix-blend-mode:screen;
+  pointer-events:none;
+  background-position:0 0;
+}
+.nocturne--erasing::before{
+  animation:nocturne-grain-erase 0.8s linear infinite;
+}
+@keyframes nocturne-grain-erase{
+  from{background-position:0 0}
+  to{background-position:-220px 0}
+}
+@media (prefers-reduced-motion: reduce){
+  .nocturne--erasing::before{animation:none}
+}
+.nocturne__frame{
+  position:relative;
+  max-width:1240px;
+  margin:0 auto;
+  padding:56px 40px;
+}
+/* Dashed top/bottom rules — follow the frame, not the viewport. */
+.nocturne__frame::before,
+.nocturne__frame::after{
+  content:"";position:absolute;left:12px;right:12px;height:1px;
+  background:repeating-linear-gradient(to right,var(--line-strong) 0 8px,transparent 8px 14px);
+  pointer-events:none;
+}
+.nocturne__frame::before{top:6px}
+.nocturne__frame::after{bottom:6px}
+/* Viewfinder corner marks */
+.nocturne__corner{
+  position:absolute;width:14px;height:14px;border:0 solid var(--ink);
+  pointer-events:none;
+}
+.nocturne__corner--tl{top:14px;left:20px;border-top-width:1px;border-left-width:1px}
+.nocturne__corner--tr{top:14px;right:20px;border-top-width:1px;border-right-width:1px}
+.nocturne__corner--bl{bottom:14px;left:20px;border-bottom-width:1px;border-left-width:1px}
+.nocturne__corner--br{bottom:14px;right:20px;border-bottom-width:1px;border-right-width:1px}
+/* Terminal chrome row: left label + right badge */
+.nocturne__chrome{
+  position:absolute;top:20px;left:40px;right:40px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Share Tech Mono','Space Mono',monospace;
+  font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
+  pointer-events:none;z-index:3;
+}
+.nocturne__label{
+  color:var(--ink);padding-bottom:3px;
+  border-bottom:1px solid var(--acid);
+}
+.nocturne__badge{color:var(--acid)}
+.nocturne__inner{
+  /* Wider column + single-line lock: text never wraps, so the band never
+     reflows. Any overflow is clipped by .nocturne { overflow:hidden }. */
+  max-width:1200px;margin:0 auto;padding:0 4px;
+  height:1.8em;
+  display:flex;align-items:center;justify-content:flex-start;
+  text-align:left;
+  overflow:hidden;
+}
+.nocturne__str{
+  font-family:'Share Tech Mono','Space Mono',ui-monospace,monospace;
+  font-style:normal;font-weight:400;
+  color:var(--ink);
+  font-size:clamp(18px,2.4vw,28px);
+  line-height:1.4;letter-spacing:0.02em;
+  white-space:nowrap;
+}
+.nocturne__caret{
+  display:inline-block;
+  width:0.6ch;height:1em;
+  background:var(--acid);
+  margin-left:6px;
+  vertical-align:-0.15em;
+  animation:nocturne-blink 1s steps(2,start) infinite;
+}
+@keyframes nocturne-blink{to{opacity:0}}
+@media (prefers-reduced-motion: reduce){
+  .nocturne__caret{animation:none}
+}
+
+/* Scramble char (rendered during type-in by JS). */
+.nocturne__scramble{
+  color:var(--acid);
+  display:inline-block;
+  text-shadow:0 0 6px rgba(227,48,26,0.55);
+  animation:nocturne-scramble-flicker 0.12s steps(2) infinite;
+}
+@keyframes nocturne-scramble-flicker{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* RGB-split interference flash (toggled briefly by JS during the hold). */
+.nocturne--glitching .nocturne__str{
+  text-shadow:-2px 0 rgba(227,48,26,0.85),2px 0 rgba(90,200,230,0.7);
+  transform:translateX(-1px);
+}
+.nocturne--glitching .nocturne__caret{
+  box-shadow:-2px 0 rgba(227,48,26,0.85),2px 0 rgba(90,200,230,0.7);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nocturne__scramble{animation:none}
+}
+
 /* ======== section heads ======== */
 .section__head{
   display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:18px;

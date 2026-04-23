@@ -292,6 +292,50 @@ class App extends StatelessComponent {
       ]),
     ]),
 
+    // ===== INTERSTITIAL / NOCTURNE =====
+    // Typewriter band between Etymology and Signal. Each sentence types in
+    // with per-character scramble (random glyph → locks to real char),
+    // occasional corruption blocks mid-type, one RGB-split flash during the
+    // hold, and a TV-static burst between sentences. Equipment-panel chrome
+    // (corners + terminal labels) gives it weight without a red backdrop.
+    // Sentences live in data-lines; behavior wired up in web/app.js.
+    div(
+      classes: 'nocturne',
+      attributes: {
+        'data-lines':
+            'The spine walks at night, through empty streets.|'
+            'The city takes its cables and connects to the spine.|'
+            'The spine trembles.|'
+            'The spine vibrates.|'
+            'Through the spine the essence flows.|'
+            'Through the spine the sound navigates.|'
+            'The wire is connected.|'
+            'It always connects at night.|'
+            'The wires feed from the empty streets.',
+      },
+      [
+        // Frame aligns corners/chrome/rules with the page content column.
+        div(classes: 'nocturne__frame', [
+          span(classes: 'nocturne__corner nocturne__corner--tl', []),
+          span(classes: 'nocturne__corner nocturne__corner--tr', []),
+          span(classes: 'nocturne__corner nocturne__corner--bl', []),
+          span(classes: 'nocturne__corner nocturne__corner--br', []),
+          div(classes: 'nocturne__chrome', [
+            span(classes: 'nocturne__label', [text('> CH.01 · RX')]),
+            span(classes: 'nocturne__badge', [text('LOOP · ∞')]),
+          ]),
+          div(classes: 'nocturne__inner', [
+            span(classes: 'nocturne__str', []),
+            span(
+              classes: 'nocturne__caret',
+              attributes: {'aria-hidden': 'true'},
+              [],
+            ),
+          ]),
+        ]),
+      ],
+    ),
+
     // ===== SIGNAL / LINKS =====
     section(id: 'signal', classes: 'signal', [
       div(classes: 'section__head', [
