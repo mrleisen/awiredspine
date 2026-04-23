@@ -349,7 +349,7 @@ class App extends StatelessComponent {
           text('\u00a0·\u00a0SPINE'),
         ]),
         div(classes: 'foot__small', [
-          text('© 2004 — ∞ · all tracks self-recorded · thank you for listening'),
+          text('© 2004 — 2026 · all tracks self-recorded · thank you for listening'),
         ]),
         div(classes: 'foot__byline', [
           text('— made by one human · '),
