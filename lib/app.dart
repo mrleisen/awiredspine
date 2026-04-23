@@ -303,15 +303,43 @@ class App extends StatelessComponent {
       classes: 'nocturne',
       attributes: {
         'data-lines':
-            'The spine walks at night, through empty streets.|'
-            'The city takes its cables and connects to the spine.|'
+            'The spine walks at night through empty streets.|'
+            'The city connects its cables to the spine.|'
             'The spine trembles.|'
             'The spine vibrates.|'
-            'Through the spine the essence flows.|'
-            'Through the spine the sound navigates.|'
+            'Through the spine the current flows.|'
+            'Through the spine the sound travels.|'
             'The wire is connected.|'
             'It always connects at night.|'
-            'The wires feed from the empty streets.',
+            'The wires feed on empty streets.|'
+            '...|'
+            'The spine trembles.|'
+            'The spine loves the sound of static.|'
+            'The night powers the current.|'
+            'The night keeps the current going.|'
+            'The wire is connected.|'
+            'The city hums through the wire.|'
+            '...|'
+            'The rain amplifies the signal.|'
+            'Lightning amplifies the signal.|'
+            'The spine shakes under the charge.|'
+            '...|'
+            'The current reaches the bone.|'
+            'The spine holds the current.|'
+            'The windows return the signal.|'
+            'The rooms begin to hum.|'
+            'The wire remains connected.|'
+            'The night keeps the circuit closed.|'
+            '...|'
+            'The rain strikes the wire.|'
+            'The wire carries the signal inward.|'
+            'The lamps hold the current.|'
+            'The windows fill with static.|'
+            'The walls begin to hum.|'
+            'The current gathers in the marrow.|'
+            'The spine listens through the bone.|'
+            'The night keeps the rooms alive.|'
+            'The city stays on the line.',
       },
       [
         // Frame aligns corners/chrome/rules with the page content column.
