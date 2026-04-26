@@ -13,9 +13,12 @@
     <img src="https://img.shields.io/badge/language-Dart_3.10%2B-F2EFE6?labelColor=000" alt="Dart 3.10+" />
     <img src="https://img.shields.io/badge/mode-Static-000?labelColor=E3301A" alt="Static mode" />
     <img src="https://img.shields.io/badge/runtime_deps-none-F2EFE6?labelColor=000" alt="No runtime deps" />
+    <img src="https://img.shields.io/badge/deploy-GitHub_Pages-181717?labelColor=000" alt="GitHub Pages" />
   </p>
 
   <p>
+    <a href="https://awiredspine.com"><b>awiredspine.com</b></a>
+    &nbsp;·&nbsp;
     <a href="https://soundcloud.com/awiredspine"><b>soundcloud.com/awiredspine</b></a>
   </p>
 </div>
@@ -145,9 +148,24 @@ The SVG has **no `fill` attribute** — color is applied at the consumer via CSS
 
 ---
 
+## Deploy
+
+Push to `master` → GitHub Actions runs `.github/workflows/deploy.yml`:
+
+1. `dart pub global activate jaspr_cli`
+2. `jaspr build --verbose`
+3. Copy `CNAME` (→ `awiredspine.com`) into `build/jaspr/`
+4. Upload artifact and deploy to GitHub Pages
+
+No server, no FTP, no runtime — pure static.
+
+<br>
+
+---
+
 <div align="center">
   <sub>
-    Music & art direction: Rafael Camargo (A Wired Spine).<br>
-    Page built with Claude.
+    Music & art direction: A Wired Spine.<br>
+    Page built with Jaspr · Dart · CSS · zero runtime deps.
   </sub>
 </div>
