@@ -47,7 +47,7 @@ class App extends StatelessComponent {
     // ===== HERO =====
     section(id: 'top', classes: 'hero', [
       div(classes: 'hero__tag hero__tag--tl', [
-        text('COORD · 41.3851 N / 2.1734 E'),
+        text('COORD · 7.8984 N / 72.4978 W'),
       ]),
       div(classes: 'hero__tag hero__tag--tr', [text('SIGNAL · 0dB REF')]),
       div(classes: 'hero__tag hero__tag--bl', [text('TRK 01/∞ · LOOP')]),
