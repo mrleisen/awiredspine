@@ -124,7 +124,7 @@ void main() {
       ),
       Component.element(
         tag: 'script',
-        attributes: {'src': 'app.js', 'defer': ''},
+        attributes: {'src': 'app.js?v=2', 'defer': ''},
       ),
     ],
     body: App(),

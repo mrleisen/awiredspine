@@ -4,6 +4,7 @@ const RELEASES = [
     id: 'routine', cat: 'AWS-003', num: '03',
     title: 'ROUTINE', sub: 'Loops, drift, and the long walk home.',
     type: 'ALBUM', year: '2012', tag: 'LATEST',
+    tracks: ['a-hello', 'a-dilemma', 'a-purchase', 'a-concern', 'a-trap', 'a-farewell'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/routine&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine'
   },
@@ -11,6 +12,8 @@ const RELEASES = [
     id: 'please', cat: 'AWS-002', num: '02',
     title: 'PLEASE, PLEASE!!!', sub: 'Insistence as composition.',
     type: 'ALBUM', year: '2010', tag: '',
+    tracks: ['remember-the-day-we-were-happy', 'itihsts', 'v-monos-por-la-sombrita-por',
+             'beware-of-the-sad-word', 'the-empty-space-between-l-ve'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/please-please&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine'
   },
@@ -18,6 +21,8 @@ const RELEASES = [
     id: 'interruptor', cat: 'AWS-001', num: '01',
     title: 'INTERRUPTOR', sub: 'First signal. The switch flipped.',
     type: 'EP', year: '2006', tag: 'DEBUT',
+    tracks: ['presiona-el-bicho-aplastalo', 'la-mandria', 'do-fin-iniciall', 'do-fin-intermediall-feat-nait',
+             'do-fin-terminall', 'espera-primaveral', 'ii-y-cuando-todo-senor', 'caminando-bajo-las-calles'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/interruptor&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine'
   }
@@ -48,14 +53,21 @@ if (list){
     list.appendChild(li);
   });
 
+  // ?play=<soundcloud slug> (linked from the receiver at rafahcf.com)
+  // opens the record that holds the track instead of the latest one,
+  // and cues that track in its player.
+  const wanted = new URLSearchParams(location.search).get('play');
+  const cued = wanted && RELEASES.find(r => (r.tracks || []).includes(wanted));
+
   // Expand the latest release on load so the player is ready.
   const latest = list.querySelector('.rel') &&
     (list.querySelector('.rel[data-id="' +
-       (RELEASES.find(r => r.tag === 'LATEST') || RELEASES[0]).id + '"]'));
+       (cued || RELEASES.find(r => r.tag === 'LATEST') || RELEASES[0]).id + '"]'));
   if(latest){
     latest.classList.add('is-open');
     const iframe = latest.querySelector('iframe');
     if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
+    if(cued && iframe) cueTrack(iframe, cued.tracks.indexOf(wanted));
   }
 
   list.addEventListener('click', (e) => {
@@ -73,6 +85,24 @@ if (list){
       if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
     }
   });
+}
+
+// Skips the SoundCloud player to track [index] of its set and plays it.
+// skip() alone only cues a player that has never played, so play() goes
+// after it. Browsers that block autoplay on a page the visitor has not
+// touched yet leave it cued and paused instead: the right record open,
+// the right track loaded, one press on play away.
+function cueTrack(iframe, index){
+  const s = document.createElement('script');
+  s.src = 'https://w.soundcloud.com/player/api.js';
+  s.onload = () => {
+    const widget = window.SC.Widget(iframe);
+    widget.bind(window.SC.Widget.Events.READY, () => {
+      widget.skip(index);
+      widget.play();
+    });
+  };
+  document.head.appendChild(s);
 }
 
 // Clock in topbar
