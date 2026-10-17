@@ -39,6 +39,8 @@ Three records, one page, zero framework bloat.
 
 Sound: electronic, instrumental, no vocals — ambient, noise, experimental, hypnotic rock. A few tracks use short cassette recordings (rain, steps, water, cars at night) as texture.
 
+Streaming distribution (Spotify, Apple Music and others) goes through CD Baby. See [docs/DISTRIBUTION.md](docs/DISTRIBUTION.md) for status and release settings.
+
 <br>
 
 ---
