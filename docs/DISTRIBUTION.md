@@ -6,7 +6,7 @@ Streaming distribution for the A WIRED SPINE catalog goes through **CD Baby** (a
 
 | Release | Year | CD Baby | Notes |
 | --- | --- | --- | --- |
-| ROUTINE | 2011 | Submitted and paid (Oct 17, 2026) | Waiting for inspection, then partner delivery |
+| ROUTINE | 2011 | Live (approved Oct 2026) | On Spotify, Apple Music, YouTube Music and the rest. Artist: https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW |
 | EP-1 | 2011 | Not submitted | Masters ready |
 | PLEASE, PLEASE!!! | 2010 | Not submitted | Masters transcoded from ~130 to 145 kbps MP3 |
 | INTERRUPTOR | 2006 | Not submitted | Masters transcoded from 192 kbps MP3 |
@@ -44,12 +44,12 @@ Masters live in `assets/audio/_CD Baby/` (ignored by git, too large for the repo
 When a release date changes, update it in all three places:
 
 1. CD Baby (release date).
-2. This repo: `web/app.js` (`RELEASES`), `lib/app.dart` and `lib/main.server.dart` if the catalog window changes, and `README.md`.
+2. This repo: `web/app.js` (`RELEASES`; the Spotify link lives there and in the SIGNAL section of `lib/app.dart`), `lib/app.dart` and `lib/main.server.dart` if the catalog window changes, and `README.md`.
 3. SoundCloud: the album and every track (track edit > Advanced settings > Release date).
 
 SoundCloud stores dates at midnight UTC, so pages viewed from Colombia show the previous day. The stored value is what matters.
 
 ## Next steps
 
-- Claim the artist profile on Spotify for Artists once ROUTINE goes live.
+- Claim the artist profile on Spotify for Artists (ROUTINE is live; artist ID `0MqExRl9ITgoQdbi3kObYW`).
 - Submit EP-1, PLEASE, PLEASE!!! and INTERRUPTOR with the same settings.

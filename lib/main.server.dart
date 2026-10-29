@@ -114,7 +114,7 @@ void main() {
         href:
             'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Major+Mono+Display&family=VT323&family=Share+Tech+Mono&display=swap',
       ),
-      link(rel: 'stylesheet', href: 'style.css?v=35'),
+      link(rel: 'stylesheet', href: 'style.css?v=36'),
       // Scripts deferred so they execute after the DOM is parsed. hero.js
       // paints the canvas background; app.js wires clock, releases,
       // crosshair, and hero parallax.
@@ -124,7 +124,7 @@ void main() {
       ),
       Component.element(
         tag: 'script',
-        attributes: {'src': 'app.js?v=3', 'defer': ''},
+        attributes: {'src': 'app.js?v=4', 'defer': ''},
       ),
     ],
     body: App(),

@@ -371,7 +371,7 @@ class App extends StatelessComponent {
         div(classes: 'section__title', [text('SIGNAL / WHERE TO TUNE IN')]),
         div(classes: 'section__rule', []),
       ]),
-      div(classes: 'sig-grid sig-grid--pair', [
+      div(classes: 'sig-grid', [
         // Broadcast log — technical readout using only confirmed facts about
         // the project (no invented booking/press/merch copy).
         div(classes: 'sig sig--log', [
@@ -389,6 +389,8 @@ class App extends StatelessComponent {
             dd([text('none / instrumental')]),
             dt([text('Format')]),
             dd([text('digital only')]),
+            dt([text('Streaming')]),
+            dd([text('ROUTINE · all platforms')]),
           ]),
         ]),
         a(
@@ -402,6 +404,24 @@ class App extends StatelessComponent {
             div(classes: 'sig__handle', [text('/awiredspine')]),
             div(classes: 'sig__hint', [
               text('three records · all streams · free to listen'),
+            ]),
+            div(classes: 'sig__arrow', [text('↗')]),
+          ],
+        ),
+        // ROUTINE went out through CD Baby and is live on Spotify, Apple
+        // Music and the rest; the other records follow. Links to the
+        // artist profile, which collects every release as it lands.
+        a(
+          classes: 'sig sig--primary',
+          href: 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW',
+          target: Target.blank,
+          attributes: {'rel': 'noopener'},
+          [
+            div(classes: 'sig__label', [text('STREAMING')]),
+            div(classes: 'sig__name', [text('SPOTIFY')]),
+            div(classes: 'sig__handle', [text('A WIRED SPINE · artist')]),
+            div(classes: 'sig__hint', [
+              text('ROUTINE · also on Apple Music, YouTube Music & more'),
             ]),
             div(classes: 'sig__arrow', [text('↗')]),
           ],

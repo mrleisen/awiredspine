@@ -598,9 +598,7 @@ a{color:inherit;text-decoration:none}
 /* ======== signal ======== */
 .signal{position:relative;z-index:5;max-width:1240px;margin:0 auto;padding:60px 22px}
 .sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-strong)}
-.sig-grid--pair{grid-template-columns:1fr 1fr}
 .sig{padding:32px 28px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line-strong);position:relative;transition:background .25s;min-height:260px}
-.sig-grid--pair .sig:last-child{border-right:none}
 
 /* Broadcast-log readout — description list keyed like a control-room panel. */
 .sig-log{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:10px;margin-top:4px;font-family:var(--mono);font-size:12px;letter-spacing:0.08em;line-height:1.2}
@@ -611,7 +609,7 @@ a{color:inherit;text-decoration:none}
 /* Primary-channel card grows — name scales with viewport, hint line sits
    under the handle so the box has visible weight next to the log. */
 .sig--primary{gap:14px}
-.sig--primary .sig__name{font-size:clamp(34px,4vw,54px);line-height:0.95}
+.sig--primary .sig__name{font-size:clamp(30px,3.4vw,48px);line-height:0.95}
 .sig__hint{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);letter-spacing:0.02em;max-width:320px}
 .sig:not(.sig--ghost):hover .sig__hint{color:var(--ink)}
 .sig:last-child{border-right:none}

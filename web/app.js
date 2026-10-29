@@ -6,7 +6,9 @@ const RELEASES = [
     type: 'ALBUM', year: '2011', tag: 'LATEST',
     tracks: ['a-hello', 'a-dilemma', 'a-purchase', 'a-concern', 'a-trap', 'a-farewell'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/routine&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
-    fallback: 'https://soundcloud.com/awiredspine'
+    fallback: 'https://soundcloud.com/awiredspine',
+    // Distributed via CD Baby; live on Spotify and the other stores.
+    spotify: 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW'
   },
   {
     id: 'please', cat: 'AWS-002', num: '02',
@@ -46,7 +48,7 @@ if (list){
       <div class="rel__player" aria-hidden="true">
         <iframe loading="lazy" allow="autoplay" data-src="${r.embed}"></iframe>
         <div class="rel__caption">
-          Can't see the player? Listen on <a href="${r.fallback}" target="_blank" rel="noopener">soundcloud.com/awiredspine ↗</a>
+          Can't see the player? Listen on <a href="${r.fallback}" target="_blank" rel="noopener">soundcloud.com/awiredspine ↗</a>${r.spotify ? ` · Also on <a href="${r.spotify}" target="_blank" rel="noopener">Spotify ↗</a>` : ''}
         </div>
       </div>
     `;
