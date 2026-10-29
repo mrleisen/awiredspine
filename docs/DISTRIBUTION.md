@@ -32,6 +32,7 @@ Masters live in `assets/audio/_CD Baby/` (ignored by git, too large for the repo
 - **ISRC and UPC:** assigned by CD Baby for free.
 - **Stores:** downloads + streaming, all stores, all territories.
 - **Partner artist IDs:** new artist profiles on Spotify, Apple Music and YouTube Music were created with ROUTINE. Later releases must select those existing profiles.
+- **Spotify for Artists:** profile claimed (Oct 28, 2026), avatar set. Artist ID `0MqExRl9ITgoQdbi3kObYW`.
 - **Social video monetization:** skipped for now (can be enabled later).
 
 ## Account
@@ -51,5 +52,4 @@ SoundCloud stores dates at midnight UTC, so pages viewed from Colombia show the 
 
 ## Next steps
 
-- Claim the artist profile on Spotify for Artists (ROUTINE is live; artist ID `0MqExRl9ITgoQdbi3kObYW`).
 - Submit EP-1, PLEASE, PLEASE!!! and INTERRUPTOR with the same settings.
