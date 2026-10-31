@@ -390,38 +390,40 @@ class App extends StatelessComponent {
             dt([text('Format')]),
             dd([text('digital only')]),
             dt([text('Streaming')]),
-            dd([text('ROUTINE · all platforms')]),
+            dd([text('Spotify · all platforms')]),
           ]),
         ]),
-        a(
-          classes: 'sig sig--primary',
-          href: 'https://soundcloud.com/awiredspine',
-          target: Target.blank,
-          attributes: {'rel': 'noopener'},
-          [
-            div(classes: 'sig__label', [text('PRIMARY CHANNEL')]),
-            div(classes: 'sig__name', [text('SOUNDCLOUD')]),
-            div(classes: 'sig__handle', [text('/awiredspine')]),
-            div(classes: 'sig__hint', [
-              text('three records · all streams · free to listen'),
-            ]),
-            div(classes: 'sig__arrow', [text('↗')]),
-          ],
-        ),
-        // ROUTINE went out through CD Baby and is live on Spotify, Apple
-        // Music and the rest; the other records follow. Links to the
-        // artist profile, which collects every release as it lands.
+        // Spotify is the main channel: ROUTINE went out through CD Baby and
+        // is live there (plus Apple Music, YouTube Music and the rest); the
+        // other records follow. Links to the artist profile, which collects
+        // every release as it lands.
         a(
           classes: 'sig sig--primary',
           href: 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW',
           target: Target.blank,
           attributes: {'rel': 'noopener'},
           [
-            div(classes: 'sig__label', [text('STREAMING')]),
+            div(classes: 'sig__label', [text('PRIMARY CHANNEL')]),
             div(classes: 'sig__name', [text('SPOTIFY')]),
             div(classes: 'sig__handle', [text('A WIRED SPINE · artist')]),
             div(classes: 'sig__hint', [
-              text('ROUTINE · also on Apple Music, YouTube Music & more'),
+              text('follow for every release · also on Apple Music, YouTube Music & more'),
+            ]),
+            div(classes: 'sig__arrow', [text('↗')]),
+          ],
+        ),
+        // SoundCloud stays as the free archive: all three records, every stream.
+        a(
+          classes: 'sig',
+          href: 'https://soundcloud.com/awiredspine',
+          target: Target.blank,
+          attributes: {'rel': 'noopener'},
+          [
+            div(classes: 'sig__label', [text('ARCHIVE')]),
+            div(classes: 'sig__name', [text('SOUNDCLOUD')]),
+            div(classes: 'sig__handle', [text('/awiredspine')]),
+            div(classes: 'sig__hint', [
+              text('the full catalog · free to listen'),
             ]),
             div(classes: 'sig__arrow', [text('↗')]),
           ],

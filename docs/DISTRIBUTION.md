@@ -1,6 +1,6 @@
 # Distribution
 
-Streaming distribution for the A WIRED SPINE catalog goes through **CD Baby** (account: awiredspine@gmail.com). SoundCloud stays as the free, primary listening channel linked from the site.
+Streaming distribution for the A WIRED SPINE catalog goes through **CD Baby** (account: awiredspine@gmail.com). Spotify is the primary channel on the site; SoundCloud stays as the free archive with the full catalog. When a release goes live on Spotify, add `spotify` (album URL) and `spotifyEmbed` to its entry in `RELEASES` (`web/app.js`) so its player switches to Spotify.
 
 ## Status
 

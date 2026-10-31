@@ -1,4 +1,6 @@
 // Data
+const SPOTIFY_ARTIST = 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW';
+
 const RELEASES = [
   {
     id: 'routine', cat: 'AWS-003', num: '03',
@@ -8,7 +10,10 @@ const RELEASES = [
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/routine&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine',
     // Distributed via CD Baby; live on Spotify and the other stores.
-    spotify: 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW'
+    // Spotify is the main player for this record; the SoundCloud embed
+    // above only loads for ?play= cues (the receiver links SC slugs).
+    spotify: 'https://open.spotify.com/album/3NUfoFX7rPtFs5PTvaZBxO',
+    spotifyEmbed: 'https://open.spotify.com/embed/album/3NUfoFX7rPtFs5PTvaZBxO?utm_source=generator&theme=0'
   },
   {
     id: 'please', cat: 'AWS-002', num: '02',
@@ -46,9 +51,10 @@ if (list){
       <div class="rel__year">${r.year}</div>
       <div class="rel__toggle" aria-label="Toggle player">+</div>
       <div class="rel__player" aria-hidden="true">
-        <iframe loading="lazy" allow="autoplay" data-src="${r.embed}"></iframe>
-        <div class="rel__caption">
-          Can't see the player? Listen on <a href="${r.fallback}" target="_blank" rel="noopener">soundcloud.com/awiredspine ↗</a>${r.spotify ? ` · Also on <a href="${r.spotify}" target="_blank" rel="noopener">Spotify ↗</a>` : ''}
+        <iframe loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" data-src="${r.spotifyEmbed || r.embed}"></iframe>
+        <div class="rel__caption">${r.spotify
+          ? `Listen on <a href="${r.spotify}" target="_blank" rel="noopener">Spotify ↗</a> · Also free on <a href="${r.fallback}" target="_blank" rel="noopener">SoundCloud ↗</a>`
+          : `Can't see the player? Listen on <a href="${r.fallback}" target="_blank" rel="noopener">soundcloud.com/awiredspine ↗</a> · Coming to <a href="${SPOTIFY_ARTIST}" target="_blank" rel="noopener">Spotify ↗</a>`}
         </div>
       </div>
     `;
@@ -68,6 +74,9 @@ if (list){
   if(latest){
     latest.classList.add('is-open');
     const iframe = latest.querySelector('iframe');
+    // A ?play= cue needs the SoundCloud widget API, so it swaps in the
+    // SoundCloud embed even on records whose default player is Spotify.
+    if(cued && iframe) iframe.dataset.src = cued.embed;
     if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
     if(cued && iframe) cueTrack(iframe, cued.tracks.indexOf(wanted));
   }

@@ -5,7 +5,7 @@
 
   <p>
     <em>Single-page site for an experimental electronic music project.</em><br>
-    Three self-released records on SoundCloud &nbsp;·&nbsp; recorded 2004 – 2011 in FL Studio.
+    Three self-released records on Spotify &amp; SoundCloud &nbsp;·&nbsp; recorded 2004 – 2011 in FL Studio.
   </p>
 
   <p>
@@ -18,6 +18,8 @@
 
   <p>
     <a href="https://awiredspine.com"><b>awiredspine.com</b></a>
+    &nbsp;·&nbsp;
+    <a href="https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW"><b>Spotify</b></a>
     &nbsp;·&nbsp;
     <a href="https://soundcloud.com/awiredspine"><b>soundcloud.com/awiredspine</b></a>
   </p>
@@ -120,9 +122,9 @@ dart pub global activate jaspr_cli
 
 1. **Hero** — full-bleed canvas op-art (concentric rings, radial spokes, counter-rotating moiré), spinning spine logo, glitched `A WIRED SPINE` title, corner tags
 2. **Interlude** — three-row marquee (records · genres · wordmark), alternating bands
-3. **Catalog** — three release rows; click unspools a SoundCloud iframe inline
+3. **Catalog** — three release rows; click unspools a player inline (Spotify for records already distributed, SoundCloud for the rest)
 4. **Etymology** — anatomical-plate layout explaining **SPINE** (analog · human · inspiration) and **WIRED** (electronic · digital · signal)
-5. **Signal** — transmission-log readout + primary SoundCloud channel card
+5. **Signal** — transmission-log readout + primary Spotify channel card + SoundCloud archive card
 6. **Footer** — spinning spiral + marquee coda
 
 <br>

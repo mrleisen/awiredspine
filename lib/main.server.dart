@@ -18,7 +18,7 @@ void main() {
   const siteDescription =
       'Three self-released instrumental records (2004 – 2011) by A WIRED SPINE — '
       'analog bone, digital current. Bedroom-made ambient, noise, and hypnotic '
-      'electronic rock. No vocals. Free to stream on SoundCloud.';
+      'electronic rock. No vocals. Stream on Spotify.';
   const ogImage = 'https://awiredspine.com/og-image.png?v=1';
 
   runApp(Document(
@@ -36,7 +36,7 @@ void main() {
         name: 'keywords',
         content:
             'A Wired Spine, experimental electronic, instrumental, ambient, noise, '
-            'electronic rock, FL Studio, SoundCloud, Rafael Camargo',
+            'electronic rock, FL Studio, Spotify, SoundCloud, Rafael Camargo',
       ),
       meta(name: 'theme-color', content: '#000000'),
       link(rel: 'canonical', href: siteUrl),
@@ -114,7 +114,7 @@ void main() {
         href:
             'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Major+Mono+Display&family=VT323&family=Share+Tech+Mono&display=swap',
       ),
-      link(rel: 'stylesheet', href: 'style.css?v=36'),
+      link(rel: 'stylesheet', href: 'style.css?v=37'),
       // Scripts deferred so they execute after the DOM is parsed. hero.js
       // paints the canvas background; app.js wires clock, releases,
       // crosshair, and hero parallax.
@@ -124,7 +124,7 @@ void main() {
       ),
       Component.element(
         tag: 'script',
-        attributes: {'src': 'app.js?v=4', 'defer': ''},
+        attributes: {'src': 'app.js?v=5', 'defer': ''},
       ),
     ],
     body: App(),
