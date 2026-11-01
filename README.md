@@ -5,7 +5,7 @@
 
   <p>
     <em>Single-page site for an experimental electronic music project.</em><br>
-    Three self-released records on Spotify &amp; SoundCloud &nbsp;·&nbsp; recorded 2004 – 2011 in FL Studio.
+    Three self-released records on Spotify &amp; SoundCloud &nbsp;·&nbsp; recorded 2004 – 2012 in FL Studio.
   </p>
 
   <p>
@@ -36,8 +36,8 @@
 Three records, one page, zero framework bloat.
 
 - **INTERRUPTOR** &nbsp;·&nbsp; EP &nbsp;·&nbsp; 2006
-- **PLEASE, PLEASE!!!** &nbsp;·&nbsp; Album &nbsp;·&nbsp; 2010
 - **ROUTINE** &nbsp;·&nbsp; Album &nbsp;·&nbsp; 2011
+- **PLEASE, PLEASE!!!** &nbsp;·&nbsp; Album &nbsp;·&nbsp; 2012
 
 Sound: electronic, instrumental, no vocals — ambient, noise, experimental, hypnotic rock. A few tracks use short cassette recordings (rain, steps, water, cars at night) as texture.
 

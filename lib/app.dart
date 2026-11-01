@@ -99,7 +99,7 @@ class App extends StatelessComponent {
           div(classes: 'int-track', [
             span([
               text(
-                'ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR · ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR · ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR · ',
+                'PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · ',
               ),
             ]),
           ]),
@@ -279,7 +279,7 @@ class App extends StatelessComponent {
           text(' Worked out in FL Studio between '),
           span(classes: 'hl', [text('2004')]),
           text(' and '),
-          span(classes: 'hl', [text('2011')]),
+          span(classes: 'hl', [text('2012')]),
           text('.'),
           br(),
           br(),
@@ -382,7 +382,7 @@ class App extends StatelessComponent {
             dt([text('Catalog')]),
             dd([text('03 transmissions')]),
             dt([text('Window')]),
-            dd([text('2004 → 2011')]),
+            dd([text('2004 → 2012')]),
             dt([text('Engine')]),
             dd([text('FL Studio · bedroom master')]),
             dt([text('Voice')]),
@@ -466,7 +466,7 @@ class App extends StatelessComponent {
       div(classes: 'foot__marquee', [
         div(classes: 'foot__marquee-track', [
           text(
-            'PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR · PLEASE, PLEASE!!! · ROUTINE · INTERRUPTOR ·',
+            'ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR · ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR · ROUTINE · PLEASE, PLEASE!!! · INTERRUPTOR ·',
           ),
         ]),
       ]),

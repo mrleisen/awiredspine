@@ -16,7 +16,7 @@ void main() {
   const siteTitle =
       'A WIRED SPINE — instrumental experiments in ambient, noise & electronic rock';
   const siteDescription =
-      'Three self-released instrumental records (2004 – 2011) by A WIRED SPINE — '
+      'Three self-released instrumental records (2004 – 2012) by A WIRED SPINE — '
       'analog bone, digital current. Bedroom-made ambient, noise, and hypnotic '
       'electronic rock. No vocals. Stream on Spotify.';
   const ogImage = 'https://awiredspine.com/og-image.png?v=1';
@@ -124,7 +124,7 @@ void main() {
       ),
       Component.element(
         tag: 'script',
-        attributes: {'src': 'app.js?v=5', 'defer': ''},
+        attributes: {'src': 'app.js?v=6', 'defer': ''},
       ),
     ],
     body: App(),

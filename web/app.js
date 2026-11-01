@@ -3,9 +3,20 @@ const SPOTIFY_ARTIST = 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW';
 
 const RELEASES = [
   {
-    id: 'routine', cat: 'AWS-003', num: '03',
+    id: 'please', cat: 'AWS-003', num: '03',
+    title: 'PLEASE, PLEASE!!!', sub: 'Insistence as composition.',
+    type: 'ALBUM', year: '2012', tag: 'LATEST',
+    tracks: ['remember-the-day-we-were-happy', 'itihsts', 'v-monos-por-la-sombrita-por',
+             'beware-of-the-sad-word', 'the-empty-space-between-l-ve'],
+    embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/please-please&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
+    fallback: 'https://soundcloud.com/awiredspine'
+    // Submitted to CD Baby on Nov 1, 2026 (release date Jul 8, 2012). Add
+    // spotify + spotifyEmbed once it is live.
+  },
+  {
+    id: 'routine', cat: 'AWS-002', num: '02',
     title: 'ROUTINE', sub: 'Loops, drift, and the long walk home.',
-    type: 'ALBUM', year: '2011', tag: 'LATEST',
+    type: 'ALBUM', year: '2011', tag: '',
     tracks: ['a-hello', 'a-dilemma', 'a-purchase', 'a-concern', 'a-trap', 'a-farewell'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/routine&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine',
@@ -14,15 +25,6 @@ const RELEASES = [
     // above only loads for ?play= cues (the receiver links SC slugs).
     spotify: 'https://open.spotify.com/album/3NUfoFX7rPtFs5PTvaZBxO',
     spotifyEmbed: 'https://open.spotify.com/embed/album/3NUfoFX7rPtFs5PTvaZBxO?utm_source=generator&theme=0'
-  },
-  {
-    id: 'please', cat: 'AWS-002', num: '02',
-    title: 'PLEASE, PLEASE!!!', sub: 'Insistence as composition.',
-    type: 'ALBUM', year: '2010', tag: '',
-    tracks: ['remember-the-day-we-were-happy', 'itihsts', 'v-monos-por-la-sombrita-por',
-             'beware-of-the-sad-word', 'the-empty-space-between-l-ve'],
-    embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/please-please&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
-    fallback: 'https://soundcloud.com/awiredspine'
   },
   {
     id: 'interruptor', cat: 'AWS-001', num: '01',
