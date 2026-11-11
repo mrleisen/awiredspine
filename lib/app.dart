@@ -393,10 +393,10 @@ class App extends StatelessComponent {
             dd([text('Spotify · all platforms')]),
           ]),
         ]),
-        // Spotify is the main channel: ROUTINE went out through CD Baby and
-        // is live there (plus Apple Music, YouTube Music and the rest); the
-        // other records follow. Links to the artist profile, which collects
-        // every release as it lands.
+        // Spotify is the main channel: ROUTINE and PLEASE, PLEASE!!! went out
+        // through CD Baby and are live there (plus Apple Music, YouTube Music
+        // and the rest); the other records follow. Links to the artist
+        // profile, which collects every release as it lands.
         a(
           classes: 'sig sig--primary',
           href: 'https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW',

@@ -7,7 +7,7 @@ Streaming distribution for the A WIRED SPINE catalog goes through **CD Baby** (a
 | Release | Year | CD Baby | Notes |
 | --- | --- | --- | --- |
 | ROUTINE | 2011 | Live (approved Oct 2026) | On Spotify, Apple Music, YouTube Music and the rest. Artist: https://open.spotify.com/artist/0MqExRl9ITgoQdbi3kObYW |
-| PLEASE, PLEASE!!! | 2012 (Jul 8) | In inspection (submitted Nov 1, 2026). UPC 885000908286 | Date from the FL Studio project files. Masters transcoded from ~130 to 145 kbps MP3 |
+| PLEASE, PLEASE!!! | 2012 (Jul 8) | Live (submitted Nov 1, 2026). UPC 885000908286 | On Spotify: https://open.spotify.com/album/0hxFGrsVYtR4g7f1H1BFYm. Date from the FL Studio project files. Masters transcoded from ~130 to 145 kbps MP3 |
 | EP-1 | 2011 | Not submitted | Masters ready |
 | INTERRUPTOR | 2006 | Not submitted | Masters transcoded from 192 kbps MP3 |
 
@@ -52,4 +52,4 @@ SoundCloud stores dates at midnight UTC, so pages viewed from Colombia show the 
 
 ## Next steps
 
-- Submit EP-1, PLEASE, PLEASE!!! and INTERRUPTOR with the same settings.
+- Submit EP-1 and INTERRUPTOR with the same settings.

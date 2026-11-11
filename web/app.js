@@ -9,9 +9,12 @@ const RELEASES = [
     tracks: ['remember-the-day-we-were-happy', 'itihsts', 'v-monos-por-la-sombrita-por',
              'beware-of-the-sad-word', 'the-empty-space-between-l-ve'],
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/please-please&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
-    fallback: 'https://soundcloud.com/awiredspine'
-    // Submitted to CD Baby on Nov 1, 2026 (release date Jul 8, 2012). Add
-    // spotify + spotifyEmbed once it is live.
+    fallback: 'https://soundcloud.com/awiredspine',
+    // Distributed via CD Baby (submitted Nov 1, 2026); live on Spotify and
+    // the other stores. Spotify is the main player for this record; the
+    // SoundCloud embed above only loads for ?play= cues.
+    spotify: 'https://open.spotify.com/album/0hxFGrsVYtR4g7f1H1BFYm',
+    spotifyEmbed: 'https://open.spotify.com/embed/album/0hxFGrsVYtR4g7f1H1BFYm?utm_source=generator&theme=0'
   },
   {
     id: 'routine', cat: 'AWS-002', num: '02',
