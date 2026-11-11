@@ -34,7 +34,7 @@ The Dart side is **structure only** — it emits HTML. All styling, interactivit
 
 - `web/style.css` — **all** visual styling (~675 lines). No utility framework. Design tokens at the top: `--bg`, `--ink`, `--ink-dim`, `--acid` (#E3301A), `--line`.
 - `web/hero.js` — full-screen `<canvas>` op-art (concentric rings + radial spokes + counter-rotating moiré). Black/white only; the acid red comes from CSS overlays on top.
-- `web/app.js` — everything else interactive: the `RELEASES` data array + DOM build for `#rel-list`, the player iframe lazy-load on click (Spotify embed when a release has `spotifyEmbed`, else SoundCloud; `?play=<slug>` always uses SoundCloud to cue the track), UTC clock, hero parallax, the "virus" infection animation that flickers letters of `A WIRED SPINE`, the cursor crosshair, synthetic waveform polygons, and the nocturne typewriter loop.
+- `web/app.js` — everything else interactive: the `RELEASES` data array + DOM build for `#rel-list`, the player iframe lazy-load on click (Spotify embed when a release has `spotifyEmbed`, else SoundCloud; `?play=<slug>` opens that song's Spotify track embed via `spotifyTracks` when the release has them, else cues it in SoundCloud), UTC clock, hero parallax, the "virus" infection animation that flickers letters of `A WIRED SPINE`, the cursor crosshair, synthetic waveform polygons, and the nocturne typewriter loop.
 - `web/assets/spine-logo.svg` — vector trace of `spine-logo.png` via `potrace`. **The SVG has no `fill` attribute** — consumers color it via CSS `filter: brightness(0) invert(1)` or `mask-image`. Don't add a fill.
 
 ### Where edits actually go

@@ -11,10 +11,12 @@ const RELEASES = [
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/please-please&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine',
     // Distributed via CD Baby (submitted Nov 1, 2026); live on Spotify and
-    // the other stores. Spotify is the main player for this record; the
-    // SoundCloud embed above only loads for ?play= cues.
+    // the other stores. Spotify is the main player for this record.
     spotify: 'https://open.spotify.com/album/0hxFGrsVYtR4g7f1H1BFYm',
-    spotifyEmbed: 'https://open.spotify.com/embed/album/0hxFGrsVYtR4g7f1H1BFYm?utm_source=generator&theme=0'
+    spotifyEmbed: 'https://open.spotify.com/embed/album/0hxFGrsVYtR4g7f1H1BFYm?utm_source=generator&theme=0',
+    // Spotify track IDs, in the same order as `tracks` (for ?play= cues).
+    spotifyTracks: ['3TXEtA5UFEv0716fEq1NbH', '50BXLrWWnzyIyGBeSMx3G8', '4YR0pCGd8D9xjhBamq67tq',
+                    '6U2xBLrv1lml8VYytuecJL', '1slAj4vYwpr6G7CDEbsHXb']
   },
   {
     id: 'routine', cat: 'AWS-002', num: '02',
@@ -24,10 +26,12 @@ const RELEASES = [
     embed: 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/awiredspine/sets/routine&color=%23E3301A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false',
     fallback: 'https://soundcloud.com/awiredspine',
     // Distributed via CD Baby; live on Spotify and the other stores.
-    // Spotify is the main player for this record; the SoundCloud embed
-    // above only loads for ?play= cues (the receiver links SC slugs).
+    // Spotify is the main player for this record.
     spotify: 'https://open.spotify.com/album/3NUfoFX7rPtFs5PTvaZBxO',
-    spotifyEmbed: 'https://open.spotify.com/embed/album/3NUfoFX7rPtFs5PTvaZBxO?utm_source=generator&theme=0'
+    spotifyEmbed: 'https://open.spotify.com/embed/album/3NUfoFX7rPtFs5PTvaZBxO?utm_source=generator&theme=0',
+    // Spotify track IDs, in the same order as `tracks` (for ?play= cues).
+    spotifyTracks: ['2Z3uuqiNq3j6soYbCAf80n', '6tShsnm9eOOD8cu1xIO2Su', '68O5gwRdqIMxDOpwa4nXFX',
+                    '25MZoeQiiSKfHFtSjnbajn', '54dGlT0QNWpHeQVLiFAbgS', '4VV03oKh7N6uGRoMPEXG6M']
   },
   {
     id: 'interruptor', cat: 'AWS-001', num: '01',
@@ -68,7 +72,8 @@ if (list){
 
   // ?play=<soundcloud slug> (linked from the receiver at rafahcf.com)
   // opens the record that holds the track instead of the latest one,
-  // and cues that track in its player.
+  // and cues that track in its player (Spotify when the record is there,
+  // SoundCloud otherwise). The slugs stay SoundCloud's so old links work.
   const wanted = new URLSearchParams(location.search).get('play');
   const cued = wanted && RELEASES.find(r => (r.tracks || []).includes(wanted));
 
@@ -79,11 +84,18 @@ if (list){
   if(latest){
     latest.classList.add('is-open');
     const iframe = latest.querySelector('iframe');
-    // A ?play= cue needs the SoundCloud widget API, so it swaps in the
-    // SoundCloud embed even on records whose default player is Spotify.
-    if(cued && iframe) iframe.dataset.src = cued.embed;
-    if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
-    if(cued && iframe) cueTrack(iframe, cued.tracks.indexOf(wanted));
+    const index = cued ? cued.tracks.indexOf(wanted) : -1;
+    const spotifyTrack = cued && cued.spotifyTracks && cued.spotifyTracks[index];
+    if(spotifyTrack && iframe){
+      // Records on Spotify open that song's Spotify player. data-src keeps
+      // the album, so closing and reopening the row shows the whole record.
+      iframe.src = `https://open.spotify.com/embed/track/${spotifyTrack}?utm_source=generator&theme=0`;
+    } else {
+      // Records still only on SoundCloud cue the track through its widget API.
+      if(cued && iframe) iframe.dataset.src = cued.embed;
+      if(iframe && !iframe.src){ iframe.src = iframe.dataset.src; }
+      if(cued && iframe) cueTrack(iframe, index);
+    }
   }
 
   list.addEventListener('click', (e) => {

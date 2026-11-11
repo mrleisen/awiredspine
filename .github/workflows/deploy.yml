@@ -26,6 +26,11 @@ jobs:
 
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1.3
+        with:
+          # Pinned: Dart 3.14.0 broke resolution (build_web_compilers <4.8.11
+          # caps the SDK below 3.14, newer ones need an analyzer jaspr_builder
+          # 0.23 doesn't accept). Bump once jaspr_builder catches up.
+          sdk: 3.13.7
 
       - name: Build Jaspr
         run: |
